@@ -1,5 +1,6 @@
 import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from "@mui/material"
 import { useUsersData } from "../hooks/useUsersData"
+import { Buttons } from "./Buttons"
 
 export const TableUsers = () => {
 
@@ -45,6 +46,9 @@ export const TableUsers = () => {
                   <TableCell align="right">{city}</TableCell>
                   <TableCell align="right">{username}</TableCell>
                   <TableCell align="right">{website}</TableCell>
+                  <TableCell align="right">
+                    <Buttons/>
+                  </TableCell>
                 </TableRow>
               )
             )}
