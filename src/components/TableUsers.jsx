@@ -47,7 +47,7 @@ export const TableUsers = () => {
                   <TableCell align="right">{username}</TableCell>
                   <TableCell align="right">{website}</TableCell>
                   <TableCell align="right">
-                    <Buttons/>
+                    <Buttons id={id}/>
                   </TableCell>
                 </TableRow>
               )
