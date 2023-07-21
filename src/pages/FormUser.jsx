@@ -1,15 +1,37 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAddUser } from "../hooks/useAddUser";
 
 export const FormUser = () => {
+
+    const {mutate: addUser} = useAddUser()
+
+    const [newUser, setNewUser] = useState({
+        name: "",
+        city: "",
+        email: "",
+        username: "",
+        website: ""
+    })
+
+    const handleChange = (event) =>{
+        const {name, value} = event.target
+        setNewUser({
+            ...newUser,
+            [name] : value
+        })
+    }
 
     const navigate = useNavigate()
 
     const handleNavigate = () =>{
         navigate("/")
+        addUser(newUser)
     }
 
   return (
+    <>
     <Grid
       container
       spacing={0}
@@ -37,6 +59,9 @@ export const FormUser = () => {
               type="text"
               placeholder="enter your name"
               fullWidth
+              value={newUser.name}
+              name="name"
+              onChange={handleChange}
             />
           </Grid>
 
@@ -46,6 +71,9 @@ export const FormUser = () => {
               type="text"
               placeholder="enter your gender"
               fullWidth
+              value={newUser.city}
+              name="city"
+              onChange={handleChange}
             />
           </Grid>
 
@@ -55,6 +83,9 @@ export const FormUser = () => {
               type="email"
               placeholder="enter your email"
               fullWidth
+              value={newUser.email}
+              name="email"
+              onChange={handleChange}
             />
           </Grid>
 
@@ -64,6 +95,9 @@ export const FormUser = () => {
               type="text"
               placeholder="enter your username"
               fullWidth
+              value={newUser.username}
+              name="username"
+              onChange={handleChange}
             />
           </Grid>
 
@@ -73,6 +107,9 @@ export const FormUser = () => {
               type="text"
               placeholder="enter your Website"
               fullWidth
+              value={newUser.website}
+              name="website"
+              onChange={handleChange}
             />
           </Grid>
 
@@ -92,5 +129,6 @@ export const FormUser = () => {
         </Grid>
       </Grid>
     </Grid>
-  );
+    </>
+  )
 };

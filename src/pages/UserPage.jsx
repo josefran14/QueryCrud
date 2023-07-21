@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, CardActions, ButtonGroup, Button, Box } from "@mui/material"
+import { Card, CardContent, Typography, Button, Box } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { useUserDetails } from "../hooks/useUserDetails"
 
@@ -17,6 +17,8 @@ export const UserPage = () => {
   }
 
   return (
+    <>
+    <Typography variant="h6" sx={{textAlign: "center"}}>Details of the user: {data?.data.name}</Typography>
     <Box sx={{width: "100%", display: "flex",justifyContent: "center", marginTop: "100px"}}>
       <Card
         sx={{
@@ -45,5 +47,6 @@ export const UserPage = () => {
         </CardContent>
       </Card>
     </Box>
+    </>
   )
 }
