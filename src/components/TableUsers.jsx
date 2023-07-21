@@ -16,7 +16,7 @@ export const TableUsers = () => {
 
   return (
     <>
-      <TableContainer sx={{ width: "100%", marginTop: "30px" }}>
+      <TableContainer sx={{ width: "100%", marginTop: "50px" }}>
         <Table size="small" aria-label="a dense table">
           <TableHead sx={{ width: "80%" }}>
             <TableRow>

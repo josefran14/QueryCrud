@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { AppQueryCrud } from "../pages/AppQueryCrud"
+import { FormUser } from "../pages/FormUser"
 import { UserPage } from "../pages/UserPage"
 
 export const AppRouter = () => {
@@ -8,6 +9,7 @@ export const AppRouter = () => {
         <Routes>
             <Route path="/" element={<AppQueryCrud/>}/>
             <Route path="/users/:userId" element={<UserPage/>}/>
+            <Route path="/form" element={<FormUser/>}/>
         </Routes>
     </>
   )
