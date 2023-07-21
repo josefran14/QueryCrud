@@ -8,6 +8,14 @@ export const UserPage = () => {
 
   const {data, error, isError, isLoading} = useUserDetails(userId)
 
+  if(isLoading){
+    return <h2>Loading...</h2>
+  }
+
+  if(isError){
+    return <h2>{error.message}</h2>
+  }
+
   return (
     <Box sx={{width: "100%", display: "flex",justifyContent: "center", marginTop: "100px"}}>
       <Card

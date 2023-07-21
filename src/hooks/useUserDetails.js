@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useQuery } from "react-query"
+import { useQuery, useQueryClient } from "react-query"
 
 export const useUserDetails = (userId) => {
 
@@ -7,5 +7,22 @@ export const useUserDetails = (userId) => {
         return axios.get(`https://fake-api-spartan.herokuapp.com/users/${userId}`)
     }
 
-  return useQuery(["users", userId], fetchUser)
+    const queryClient = useQueryClient()
+
+    const user = queryClient.getQueryData("users")
+
+    console.log(user?.data)
+
+  return useQuery(["users", userId], fetchUser, {
+    initialData: () => {
+      const user = queryClient?.getQueryData("users")?.data?.find((user) => user.id === parseInt(userId));
+      if(user){
+        return{
+          data: user
+        }
+      }else{
+        return undefined
+      }
+    }
+  })
 }
