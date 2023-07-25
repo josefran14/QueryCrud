@@ -9,10 +9,6 @@ export const useUserDetails = (userId) => {
 
     const queryClient = useQueryClient()
 
-    const user = queryClient.getQueryData("users")
-
-    console.log(user?.data)
-
   return useQuery(["users", userId], fetchUser, {
     initialData: () => {
       const user = queryClient?.getQueryData("users")?.data?.find((user) => user.id === parseInt(userId));

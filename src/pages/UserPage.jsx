@@ -1,52 +1,95 @@
-import { Card, CardContent, Typography, Button, Box } from "@mui/material"
-import { useParams } from "react-router-dom"
-import { useUserDetails } from "../hooks/useUserDetails"
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Box,
+  Avatar,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate, useParams } from "react-router-dom";
+import { useUserDetails } from "../hooks/useUserDetails";
 
 export const UserPage = () => {
+  const navigate = useNavigate();
 
-  const {userId} = useParams()
+  const handleNavigate = () => {
+    navigate("/");
+  };
 
-  const {data, error, isError, isLoading} = useUserDetails(userId)
+  const { userId } = useParams();
 
-  if(isLoading){
-    return <h2>Loading...</h2>
+  const { data, error, isError, isLoading } = useUserDetails(userId);
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
   }
 
-  if(isError){
-    return <h2>{error.message}</h2>
+  if (isError) {
+    return <h2>{error.message}</h2>;
   }
+
+  const { name, email, city, website, username } = data?.data;
+
+  const abreviation = name.replace(/[a-z]/g, "").replace(/ /, "");
 
   return (
     <>
-    <Typography variant="h6" sx={{textAlign: "center"}}>Details of the user: {data?.data.name}</Typography>
-    <Box sx={{width: "100%", display: "flex",justifyContent: "center", marginTop: "100px"}}>
-      <Card
+      <Box
         sx={{
-          height: "250px",
-          width: "50%",
-          boxShadow: 'lg',
-          background: "#13191c"
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
       >
-        <CardContent sx={{ alignItems: 'center', textAlign: 'center', display: "flex", flexDirection: "column", gap: "20px"}}>
-          <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 1, mb: 0.5, color: "white" }}>
-            Name: {data?.data.name}
+        <Card
+          sx={{
+            width: 620,
+            maxWidth: "100%",
+            boxShadow: "lg",
+            background: "#333",
+            color: "white",
+            borderRadius: "26px",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Button onClick={handleNavigate}>
+              <CloseIcon color="error" />
+            </Button>
+          </Box>
+          <Typography variant="h6" sx={{ textAlign: "center" }}>
+            Details of the user {name}
           </Typography>
-          <Typography sx={{ color: "white" }}>
-            Gender: {data?.data.city}
-          </Typography>
-          <Typography sx={{ color: "white" }}>
-            Email: {data?.data.email}
-          </Typography>
-          <Typography sx={{ color: "white" }}>
-            Username: {data?.data.username}
-          </Typography>
-          <Typography sx={{ color: "white" }}>
-            website: {data?.data.website}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Box>
+          <CardContent sx={{ alignItems: "center", textAlign: "center" }}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Avatar sx={{ width: "60px", height: "60px" }}>
+                {abreviation}
+              </Avatar>
+            </Box>
+            <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 2, mb: 0.5 }}>
+              {name}
+            </Typography>
+            <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 2, mb: 0.5 }}>
+              {city}
+            </Typography>
+            <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 2, mb: 0.5 }}>
+              {email}
+            </Typography>
+            <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 2, mb: 0.5 }}>
+              {username}
+            </Typography>
+            <Typography fontSize="lg" fontWeight="lg" sx={{ mt: 2, mb: 0.5 }}>
+              {website}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
     </>
-  )
-}
+  );
+};
