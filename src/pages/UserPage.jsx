@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Box,
-  Avatar,
-} from "@mui/material";
+import {Card,CardContent,Typography,Button,Box,Avatar,}from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUserDetails } from "../hooks/useUserDetails";

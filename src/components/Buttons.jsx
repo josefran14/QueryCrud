@@ -21,13 +21,13 @@ export const Buttons = ({id}) => {
 
   return (
     <Box sx={{display: "flex", justifyContent: "center", gap: "15px"}}>
-        <Button onClick={handleDeleteUser} variant="contained" color="error">
+        <Button onClick={handleDeleteUser} variant="contained" color="error"sx={{borderRadius: "12px"}}>
             <DeleteIcon/>
         </Button>
-        <Button onClick={handleNavigate} variant="contained" color="warning">
+        <Button onClick={handleNavigate} variant="contained" color="secondary" sx={{borderRadius: "12px"}}>
             <VisibilityIcon/>
         </Button>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="info" sx={{borderRadius: "12px"}} >
             <EditIcon/>
         </Button>
     </Box>
