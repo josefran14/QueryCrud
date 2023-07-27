@@ -1,22 +1,23 @@
-import axios from "axios"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+import axios from "axios";
+import { useMutation, useQueryClient } from "react-query";
 
-export const useUpdateUser = () => {
-
-    const editUser = async(userId, newData) =>{
-        try {
-            const response = axios.put(`https://fake-api-spartan.herokuapp.com/users/${userId}`, newData)
-            return response.data
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const mutation = useMutation(editUser, {
-        onSuccess: () =>{
-            console.log("Success")
-        }
-    })
-
-  return mutation
-}
+const updateCategory = async (newData) => {
+    const response = await axios.put(
+        `https://fake-api-spartan.herokuapp.com/users/${newData.id}`,
+      newData
+    );
+    return await response.data;
+  };
+  
+  export const useUpdateUser = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateCategory, {
+      onSuccess: () => {
+        queryClient.invalidateQueries("users");
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+      onSettled: () => {},
+    });
+  };

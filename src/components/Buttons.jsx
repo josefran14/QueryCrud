@@ -20,7 +20,7 @@ export const Buttons = ({id}) => {
     }
 
     const handleNavigateEdit = () =>{
-        navigate(`/edit/${id}`)
+        navigate(`/user/${id}/edit`)
     }
 
   return (

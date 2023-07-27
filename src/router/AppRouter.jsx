@@ -11,7 +11,7 @@ export const AppRouter = () => {
             <Route path="/" element={<AppQueryCrud/>}/>
             <Route path="/users/:userId" element={<UserPage/>}/>
             <Route path="/form" element={<FormUser/>}/>
-            <Route path="/edit/:userId" element={<EditUserPage/>}/>
+            <Route path="/user/:userId/edit" element={<EditUserPage/>}/>
         </Routes>
     </>
   )

@@ -2,21 +2,16 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAddUser } from "../hooks/useAddUser";
-import { useUpdateUser } from "../hooks/useUpdateUser";
-import { useUserDetails } from "../hooks/useUserDetails";
 
-export const Form = ({title, titleButton, userId, data}) => {
+export const Form = ({title, titleButton, onSubmit, initialValue}) => {
 
   const [user, setUser] = useState({
-      name: data?.name ? data?.name : "",
-      city: data?.city ? data?.city : "",
-      email: data?.email ? data?.email : "",
-      username: data?.username ? data?.username : "",
-      website: data?.website ? data?.website : ""
+      name: initialValue.name || "",
+      city: initialValue.city || "",
+      email: initialValue.email || "",
+      username: initialValue.username || "",
+      website: initialValue.website || ""
   })
-
-  
-  const {mutate: addUser} = useAddUser()
 
     const handleChange = (event) =>{
         const {name, value} = event.target
@@ -29,20 +24,8 @@ export const Form = ({title, titleButton, userId, data}) => {
     const navigate = useNavigate()
 
     const handleAddUser = () =>{
-
-        const newData = {
-          ...user
-        }
-
-        console.log(newData)
-
-        if(userId){
-          editUser(data.id, newData)
+          onSubmit(user)
           navigate("/")
-        }else{
-          addUser(user)
-          navigate("/")
-        }
     }
 
   return (
