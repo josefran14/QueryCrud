@@ -50,6 +50,7 @@ export const UserPage = () => {
             sx={{
               display: "flex",
               justifyContent: "flex-end",
+              marginTop: "5px"
             }}
           >
             <Button onClick={handleNavigate}>
