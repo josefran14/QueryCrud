@@ -5,7 +5,7 @@ import { useAddUser } from "../hooks/useAddUser";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import { useUserDetails } from "../hooks/useUserDetails";
 
-export const Form = ({title, titleButton}) => {
+export const Form = ({title, titleButton, userId, data}) => {
 
   const [user, setUser] = useState({
       name: data?.name ? data?.name : "",
@@ -15,17 +15,8 @@ export const Form = ({title, titleButton}) => {
       website: data?.website ? data?.website : ""
   })
 
-  const {userId} = useParams()
-
-  const isEdit = !!userId
-
-  const {data: updateData} = useUserDetails(userId)
-  const {mutate: editUser} = useUpdateUser()
+  
   const {mutate: addUser} = useAddUser()
-
-  const {data} = updateData
-
-    console.log("id", userId)
 
     const handleChange = (event) =>{
         const {name, value} = event.target
