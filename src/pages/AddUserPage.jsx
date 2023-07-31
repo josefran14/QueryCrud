@@ -1,7 +1,7 @@
 import { Form } from "../components/Form";
 import { useAddUser } from "../hooks/useAddUser";
 
-export const FormUser = () => {
+export const AddUserPage = () => {
 
   const {mutate: addUser} = useAddUser()
 

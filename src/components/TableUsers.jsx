@@ -1,4 +1,4 @@
-import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from "@mui/material"
+import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box } from "@mui/material"
 import { useUsersData } from "../hooks/useUsersData"
 import { Buttons } from "./Buttons"
 
@@ -50,8 +50,9 @@ export const TableUsers = () => {
                     <Buttons id={id}/>
                   </TableCell>
                 </TableRow>
+
               )
-            )}
+              )}
           </TableBody>
         </Table>
       </TableContainer>

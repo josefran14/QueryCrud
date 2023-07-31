@@ -24,6 +24,7 @@ export const Buttons = ({id}) => {
     }
 
   return (
+    <>
     <Box sx={{display: "flex", justifyContent: "center", gap: "15px"}}>
         <Button onClick={handleDeleteUser} variant="contained" color="error"sx={{borderRadius: "12px"}}>
             <DeleteIcon/>
@@ -35,5 +36,6 @@ export const Buttons = ({id}) => {
             <EditIcon/>
         </Button>
     </Box>
+    </>
   )
 }
